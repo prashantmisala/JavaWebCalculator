@@ -19,7 +19,7 @@ pipeline {
             }
         }
         stage('nexxus'){
-            stage {
+            steps {
 	    sh 'mvn deploy'
             }
         }
