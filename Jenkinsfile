@@ -28,7 +28,7 @@ pipeline {
         stage('tomcat'){
             steps {
             sshagent(['centos']) {
-            sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/prac/target/WebAppCal-0.0.1 centos@172.31.20.172:apache-tomcat-7.0.94/webapps/'
+            sh 'scp -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/prac/target/WebAppCal-0.0.1 centos@172.31.5.128:/home/centos/apache-tomcat-7.0.94/webapps/'
             }
         }
       }
