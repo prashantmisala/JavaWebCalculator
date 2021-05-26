@@ -13,15 +13,13 @@ pipeline {
             sh 'mvn package'
             }
         }
-        stage('scanning') { 
+        stage('tomcat'){
             steps {
-            sh 'mvn sonar:sonar -Dsonar.host.url=http://3.239.68.82:9000 -Dsonar.login=787c840b01beb225671ea3580e894f69e1e71422'
+            sshagent(['centos']) {
+            sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/prac/target/WebAppCal-0.0.1 centos@172.31.20.172:apache-tomcat-7.0.94/webapps/'
             }
         }
-        stage('nexxus'){
-            steps {
-	    sh 'mvn deploy'
-            }
-        }
+      }
+
     }
 }
