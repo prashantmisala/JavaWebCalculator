@@ -13,15 +13,17 @@ pipeline {
             sh 'mvn package'
             }
         }
-        agent {slave}     
-        stage('sonar') { 
+          
+         stage('sonar') { 
+         agent {slave}   
             steps {
             echo 'testing'
             sh 'mvn sonar:sonar -Dsonar.host.url=http://3.218.152.201:9000 -Dsonar.login=9ee09de73ce5d9404b216d986bfcdc9ee9d3db54'
             }
         }
-        agent {slave}   
+           
         stage('nexus') { 
+        agent {slave} 
             steps {
             echo 'uploading'
             sh 'mvn deploy'
